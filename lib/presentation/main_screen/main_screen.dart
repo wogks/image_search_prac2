@@ -14,6 +14,7 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   final _controller = TextEditingController();
+  int currentIndex = 0;
   @override
   void dispose() {
     _controller.dispose();
@@ -37,12 +38,30 @@ class _MainScreenState extends State<MainScreen> {
         FocusManager.instance.primaryFocus?.unfocus();
       },
       child: Scaffold(
-        bottomNavigationBar: BottomNavigationBar(items: const [
-          BottomNavigationBarItem(
-              icon: Icon(CupertinoIcons.photo), label: 'text'),
-          BottomNavigationBarItem(
-              icon: Icon(CupertinoIcons.video_camera), label: 'text')
-        ]),
+        bottomNavigationBar: BottomNavigationBar(
+            selectedItemColor: Colors.grey,
+            selectedLabelStyle: null,
+            showSelectedLabels: false,
+            showUnselectedLabels: false,
+            onTap: (index) {
+              setState(() {
+                currentIndex = index;
+              });
+            },
+            items: const [
+              BottomNavigationBarItem(
+                  icon: Icon(
+                    CupertinoIcons.photo,
+                    size: 20,
+                  ),
+                  label: 'text'),
+              BottomNavigationBarItem(
+                  icon: Icon(
+                    CupertinoIcons.video_camera,
+                    size: 25,
+                  ),
+                  label: 'text')
+            ]),
         appBar: AppBar(
           elevation: 0,
           centerTitle: true,
@@ -50,48 +69,77 @@ class _MainScreenState extends State<MainScreen> {
           title: const Text('Image Search App',
               style: TextStyle(color: Colors.black)),
         ),
-        body: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: TextField(
-                onChanged: (value) {
-                  debouncer.run(() => viewModel.fetch(_controller.text));
+        body: [
+          ImageSearch(controller: _controller, viewModel: viewModel),
+          const VideoSearch(),
+        ][currentIndex],
+      ),
+    );
+  }
+}
+
+class VideoSearch extends StatelessWidget {
+  const VideoSearch({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}
+
+class ImageSearch extends StatelessWidget {
+  const ImageSearch({
+    Key? key,
+    required this.viewModel,
+    required TextEditingController controller,
+  })  : _controller = controller,
+        super(key: key);
+
+  final MainViewModel viewModel;
+  final TextEditingController _controller;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: TextField(
+            onChanged: (value) {
+              debouncer.run(() => viewModel.fetch(_controller.text));
+            },
+            controller: _controller,
+            decoration: InputDecoration(
+              suffixIcon: IconButton(
+                onPressed: () async {
+                  viewModel.fetch(_controller.text);
                 },
-                controller: _controller,
-                decoration: InputDecoration(
-                  suffixIcon: IconButton(
-                    onPressed: () async {
-                      viewModel.fetch(_controller.text);
-                    },
-                    icon: const Icon(Icons.search),
-                  ),
-                  border: const OutlineInputBorder(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(10),
-                    ),
-                  ),
+                icon: const Icon(Icons.search),
+              ),
+              border: const OutlineInputBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(10),
                 ),
               ),
             ),
-            viewModel.isLosading
-                ? const CircularProgressIndicator()
-                : Expanded(
-                    child: GridView.builder(
-                    padding: const EdgeInsets.all(16),
-                    itemCount: viewModel.photos.length,
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        crossAxisSpacing: 16,
-                        mainAxisSpacing: 16),
-                    itemBuilder: (context, index) {
-                      final photo = viewModel.photos[index];
-                      return PhotoWidget(photo: photo);
-                    },
-                  ))
-          ],
+          ),
         ),
-      ),
+        viewModel.isLosading
+            ? const CircularProgressIndicator()
+            : Expanded(
+                child: GridView.builder(
+                padding: const EdgeInsets.all(16),
+                itemCount: viewModel.photos.length,
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    crossAxisSpacing: 16,
+                    mainAxisSpacing: 16),
+                itemBuilder: (context, index) {
+                  final photo = viewModel.photos[index];
+                  return PhotoWidget(photo: photo);
+                },
+              ))
+      ],
     );
   }
 }
