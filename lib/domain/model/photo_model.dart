@@ -10,8 +10,8 @@ class PhotoModel with _$PhotoModel {
     required String tags,
     required String previewURL,
     required int id,
-    
   }) = _PhotoModel;
 
-  factory PhotoModel.fromJson(Map<String, Object?> json) => _$PhotoModelFromJson(json);
+  factory PhotoModel.fromJson(Map<String, Object?> json) =>
+      _$PhotoModelFromJson(json);
 }

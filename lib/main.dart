@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:image_search_prac_2/data/source/remote/api/pixabay_api_imple.dart';
 import 'package:image_search_prac_2/presentation/main_screen/main_screen.dart';
 import 'package:image_search_prac_2/presentation/main_screen/main_view_model.dart';
+import 'package:image_search_prac_2/util/debouncer.dart';
 import 'package:provider/provider.dart';
 
+final debouncer = Debouncer(milliseconds: 500);
 void main() {
   runApp(ChangeNotifierProvider(
-          create: (_) => MainViewModel(PixabayApiImpl()),
-          child: const MyApp()));
+      create: (_) => MainViewModel(PixabayApiImpl()), child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -17,11 +18,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const MainScreen()
-    );
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: const MainScreen());
   }
 }
