@@ -18,14 +18,7 @@ class _VideoSearchState extends State<VideoSearch> {
     _controller.dispose();
     super.dispose();
   }
-  @override
-  void initState() {
-    Future.delayed(Duration.zero,  (() {
-      final viewModel = context.read<VideoSearchViewModel>();
-      viewModel.fetchVideos('');
-    }));
-    super.initState();
-  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -59,14 +52,14 @@ class _VideoSearchState extends State<VideoSearch> {
             : Expanded(
                 child: GridView.builder(
                   padding: const EdgeInsets.all(16),
-                  itemCount: viewModel.videos.length,
+                  itemCount: viewModel.thumbNails.length,
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                       crossAxisSpacing: 16,
                       mainAxisSpacing: 16),
                   itemBuilder: (context, index) {
-                    final video = viewModel.videos[index];
-                    return VideoWidget(video: video);
+                    final thumbNail = viewModel.thumbNails[index];
+                    return VideoWidget(thumbNail: thumbNail);
                   },
                 ),
               ),

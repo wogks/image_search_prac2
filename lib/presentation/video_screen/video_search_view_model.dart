@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'dart:collection';
 
 import 'package:flutter/material.dart';
@@ -15,11 +17,25 @@ class VideoSearchViewModel with ChangeNotifier {
   bool _isLoading = false;
   bool get isLoading => _isLoading;
 
+  List<VideoModel> _thumbNails = [];
+  UnmodifiableListView<VideoModel> get thumbNails =>
+      UnmodifiableListView(_thumbNails);
+
   Future<void> fetchVideos(String query) async {
     final result = await videoApi.fetchVideos(query);
     _isLoading = true;
     notifyListeners();
     _videos = result;
+    notifyListeners();
+    _isLoading = false;
+    notifyListeners();
+  }
+
+  Future<void> fetchThumbnail(String picture_id) async {
+    final result = await videoApi.fetchThumbnail(picture_id);
+    _isLoading = true;
+    notifyListeners();
+    _thumbNails = result;
     notifyListeners();
     _isLoading = false;
     notifyListeners();

@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:image_search_prac_2/data/source/remote/api/video_api/video_api.dart';
 import 'package:image_search_prac_2/domain/model/video/video_model.dart';
 
+
 class VideoApiImple extends VideoApi {
   @override
   Future<List<VideoModel>> fetchVideos(String query) async {
@@ -13,4 +14,14 @@ class VideoApiImple extends VideoApi {
     Iterable hits = json['hits'];
     return hits.map((e) => VideoModel.fromJson(e)).toList();
   }
+
+  @override
+  Future<List<VideoModel>> fetchThumbnail(String pictureId) async{
+    final response = await http.get(Uri.parse('https://i.vimeocdn.com/video/${pictureId}_960x540.jpg'));
+    Map<String, dynamic> json = jsonDecode(response.body);
+    Iterable thumbNail = json['hits'];
+    return thumbNail.map((e) => VideoModel.fromJson(e)).toList();
+  }
+
+
 }
