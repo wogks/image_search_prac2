@@ -32,7 +32,6 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final viewModel = context.watch<MainViewModel>();
     return GestureDetector(
       onTap: () {
         FocusManager.instance.primaryFocus?.unfocus();
@@ -66,11 +65,13 @@ class _MainScreenState extends State<MainScreen> {
           elevation: 0,
           centerTitle: true,
           backgroundColor: Colors.yellow,
-          title: const Text('Image Search App',
-              style: TextStyle(color: Colors.black)),
+          title:
+              const Text('Search App', style: TextStyle(color: Colors.black)),
         ),
         body: [
-          ImageSearch(controller: _controller, viewModel: viewModel),
+          ImageSearch(
+            controller: _controller,
+          ),
           const VideoSearch(),
         ][currentIndex],
       ),
@@ -90,16 +91,15 @@ class VideoSearch extends StatelessWidget {
 class ImageSearch extends StatelessWidget {
   const ImageSearch({
     Key? key,
-    required this.viewModel,
     required TextEditingController controller,
   })  : _controller = controller,
         super(key: key);
 
-  final MainViewModel viewModel;
   final TextEditingController _controller;
 
   @override
   Widget build(BuildContext context) {
+    final viewModel = context.watch<MainViewModel>();
     return Column(
       children: [
         Padding(
