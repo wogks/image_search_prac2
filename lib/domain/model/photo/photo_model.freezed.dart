@@ -23,6 +23,7 @@ mixin _$PhotoModel {
   String get tags => throw _privateConstructorUsedError;
   String get previewURL => throw _privateConstructorUsedError;
   int get id => throw _privateConstructorUsedError;
+  String get largeImageURL => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -36,7 +37,7 @@ abstract class $PhotoModelCopyWith<$Res> {
           PhotoModel value, $Res Function(PhotoModel) then) =
       _$PhotoModelCopyWithImpl<$Res, PhotoModel>;
   @useResult
-  $Res call({String tags, String previewURL, int id});
+  $Res call({String tags, String previewURL, int id, String largeImageURL});
 }
 
 /// @nodoc
@@ -55,6 +56,7 @@ class _$PhotoModelCopyWithImpl<$Res, $Val extends PhotoModel>
     Object? tags = null,
     Object? previewURL = null,
     Object? id = null,
+    Object? largeImageURL = null,
   }) {
     return _then(_value.copyWith(
       tags: null == tags
@@ -69,6 +71,10 @@ class _$PhotoModelCopyWithImpl<$Res, $Val extends PhotoModel>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
+      largeImageURL: null == largeImageURL
+          ? _value.largeImageURL
+          : largeImageURL // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -81,7 +87,7 @@ abstract class _$$_PhotoModelCopyWith<$Res>
       __$$_PhotoModelCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String tags, String previewURL, int id});
+  $Res call({String tags, String previewURL, int id, String largeImageURL});
 }
 
 /// @nodoc
@@ -98,6 +104,7 @@ class __$$_PhotoModelCopyWithImpl<$Res>
     Object? tags = null,
     Object? previewURL = null,
     Object? id = null,
+    Object? largeImageURL = null,
   }) {
     return _then(_$_PhotoModel(
       tags: null == tags
@@ -112,6 +119,10 @@ class __$$_PhotoModelCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
+      largeImageURL: null == largeImageURL
+          ? _value.largeImageURL
+          : largeImageURL // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -120,7 +131,10 @@ class __$$_PhotoModelCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_PhotoModel implements _PhotoModel {
   const _$_PhotoModel(
-      {required this.tags, required this.previewURL, required this.id});
+      {required this.tags,
+      required this.previewURL,
+      required this.id,
+      required this.largeImageURL});
 
   factory _$_PhotoModel.fromJson(Map<String, dynamic> json) =>
       _$$_PhotoModelFromJson(json);
@@ -131,10 +145,12 @@ class _$_PhotoModel implements _PhotoModel {
   final String previewURL;
   @override
   final int id;
+  @override
+  final String largeImageURL;
 
   @override
   String toString() {
-    return 'PhotoModel(tags: $tags, previewURL: $previewURL, id: $id)';
+    return 'PhotoModel(tags: $tags, previewURL: $previewURL, id: $id, largeImageURL: $largeImageURL)';
   }
 
   @override
@@ -145,12 +161,15 @@ class _$_PhotoModel implements _PhotoModel {
             (identical(other.tags, tags) || other.tags == tags) &&
             (identical(other.previewURL, previewURL) ||
                 other.previewURL == previewURL) &&
-            (identical(other.id, id) || other.id == id));
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.largeImageURL, largeImageURL) ||
+                other.largeImageURL == largeImageURL));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, tags, previewURL, id);
+  int get hashCode =>
+      Object.hash(runtimeType, tags, previewURL, id, largeImageURL);
 
   @JsonKey(ignore: true)
   @override
@@ -170,7 +189,8 @@ abstract class _PhotoModel implements PhotoModel {
   const factory _PhotoModel(
       {required final String tags,
       required final String previewURL,
-      required final int id}) = _$_PhotoModel;
+      required final int id,
+      required final String largeImageURL}) = _$_PhotoModel;
 
   factory _PhotoModel.fromJson(Map<String, dynamic> json) =
       _$_PhotoModel.fromJson;
@@ -181,6 +201,8 @@ abstract class _PhotoModel implements PhotoModel {
   String get previewURL;
   @override
   int get id;
+  @override
+  String get largeImageURL;
   @override
   @JsonKey(ignore: true)
   _$$_PhotoModelCopyWith<_$_PhotoModel> get copyWith =>

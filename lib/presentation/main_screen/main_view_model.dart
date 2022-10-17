@@ -17,6 +17,7 @@ class MainViewModel with ChangeNotifier {
 
   Future<void> fetch(String query) async {
     final result = await api.fetch(query);
+    
     _isloading = true;
     notifyListeners();
     _photos = result;

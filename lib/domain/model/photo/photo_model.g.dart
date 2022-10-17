@@ -13,6 +13,7 @@ _$_PhotoModel _$$_PhotoModelFromJson(Map<String, dynamic> json) =>
       tags: json['tags'] as String,
       previewURL: json['previewURL'] as String,
       id: json['id'] as int,
+      largeImageURL: json['largeImageURL'] as String,
     );
 
 Map<String, dynamic> _$$_PhotoModelToJson(_$_PhotoModel instance) =>
@@ -20,4 +21,5 @@ Map<String, dynamic> _$$_PhotoModelToJson(_$_PhotoModel instance) =>
       'tags': instance.tags,
       'previewURL': instance.previewURL,
       'id': instance.id,
+      'largeImageURL': instance.largeImageURL,
     };

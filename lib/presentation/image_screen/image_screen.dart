@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:image_search_prac_2/presentation/main_screen/detail_screen.dart';
 import 'package:provider/provider.dart';
 
 import '../../main.dart';
@@ -53,7 +54,14 @@ class ImageSearch extends StatelessWidget {
                     mainAxisSpacing: 16),
                 itemBuilder: (context, index) {
                   final photo = viewModel.photos[index];
-                  return PhotoWidget(photo: photo);
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => ImageDetailScreen(bigPhoto: photo),),
+                      );
+                    },
+                    child: PhotoWidget(photo: photo));
                 },
               ))
       ],
