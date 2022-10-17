@@ -58,7 +58,7 @@ class ImageSearch extends StatelessWidget {
                     onTap: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => ImageDetailScreen(bigPhoto: photo),),
+                        MaterialPageRoute(builder: (context) => ImageDetailScreen(bigPhoto: photo)),
                       );
                     },
                     child: PhotoWidget(photo: photo));

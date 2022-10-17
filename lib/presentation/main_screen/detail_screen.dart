@@ -7,11 +7,13 @@ class ImageDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        image: DecorationImage(
-          fit: BoxFit.cover,
-          image: NetworkImage(bigPhoto.largeImageURL),
+    return InteractiveViewer(
+      child: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            fit: BoxFit.contain,
+            image: NetworkImage(bigPhoto.largeImageURL),
+          ),
         ),
       ),
     );
