@@ -6,12 +6,11 @@ import 'package:image_search_prac_2/domain/model/video/video_model.dart';
 
 class VideoApiImple extends VideoApi {
   @override
-  Future<List<VideoModel>> fetch(String query) async {
+  Future<List<VideoModel>> fetchVideos(String query) async {
     final response = await http.get(Uri.parse(
-      'https://pixabay.com/api/videos/?key=28871499-c75df118d01f09e96aaf02d60&q=$query'));
+        'https://pixabay.com/api/videos/?key=28871499-c75df118d01f09e96aaf02d60&q=$query'));
     Map<String, dynamic> json = jsonDecode(response.body);
     Iterable hits = json['hits'];
     return hits.map((e) => VideoModel.fromJson(e)).toList();
   }
-
 }

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:image_search_prac_2/presentation/main_screen/main_view_model.dart';
 import 'package:provider/provider.dart';
 
-import '../image_screen/image_screen.dart';
+import '../image_screen/image_search.dart';
 import '../video_screen/video_screen.dart';
 
 class MainScreen extends StatefulWidget {
@@ -73,7 +73,7 @@ class _MainScreenState extends State<MainScreen> {
           ImageSearch(
             controller: _controller,
           ),
-          const VideoSearch(),
+          const VideoSearch()
         ][currentIndex],
       ),
     );

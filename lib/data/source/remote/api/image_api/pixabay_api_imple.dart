@@ -1,9 +1,9 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:image_search_prac_2/data/source/remote/api/pixabay_api.dart';
 
-import '../../../../domain/model/photo/photo_model.dart';
+import 'package:image_search_prac_2/domain/model/photo/photo_model.dart';
+import 'pixabay_api.dart';
 
 class PixabayApiImpl implements PixabayApi {
   @override
