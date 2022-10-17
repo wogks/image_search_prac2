@@ -9,7 +9,7 @@ class PhotoModel with _$PhotoModel {
   const factory PhotoModel({
     required String tags,
     required String previewURL,
-    required String id,
+    required int id,
     
   }) = _PhotoModel;
 

@@ -6,10 +6,9 @@ import 'package:image_search_prac_2/domain/model/photo_model.dart';
 
 class MainViewModel with ChangeNotifier {
   final PixabayApi api;
+  MainViewModel(this.api);
 
   List<PhotoModel> _photos = [];
-
-  MainViewModel(this.api);
 
   UnmodifiableListView<PhotoModel> get photos => UnmodifiableListView(_photos);
 
@@ -23,5 +22,6 @@ class MainViewModel with ChangeNotifier {
     _photos = result;
     notifyListeners();
     _isloading = false;
+    notifyListeners();
   }
 }

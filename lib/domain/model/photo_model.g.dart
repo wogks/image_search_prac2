@@ -10,7 +10,7 @@ _$_PhotoModel _$$_PhotoModelFromJson(Map<String, dynamic> json) =>
     _$_PhotoModel(
       tags: json['tags'] as String,
       previewURL: json['previewURL'] as String,
-      id: json['id'] as String,
+      id: json['id'] as int,
     );
 
 Map<String, dynamic> _$$_PhotoModelToJson(_$_PhotoModel instance) =>

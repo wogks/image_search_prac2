@@ -22,7 +22,7 @@ PhotoModel _$PhotoModelFromJson(Map<String, dynamic> json) {
 mixin _$PhotoModel {
   String get tags => throw _privateConstructorUsedError;
   String get previewURL => throw _privateConstructorUsedError;
-  String get id => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -36,7 +36,7 @@ abstract class $PhotoModelCopyWith<$Res> {
           PhotoModel value, $Res Function(PhotoModel) then) =
       _$PhotoModelCopyWithImpl<$Res, PhotoModel>;
   @useResult
-  $Res call({String tags, String previewURL, String id});
+  $Res call({String tags, String previewURL, int id});
 }
 
 /// @nodoc
@@ -68,7 +68,7 @@ class _$PhotoModelCopyWithImpl<$Res, $Val extends PhotoModel>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
     ) as $Val);
   }
 }
@@ -81,7 +81,7 @@ abstract class _$$_PhotoModelCopyWith<$Res>
       __$$_PhotoModelCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String tags, String previewURL, String id});
+  $Res call({String tags, String previewURL, int id});
 }
 
 /// @nodoc
@@ -111,7 +111,7 @@ class __$$_PhotoModelCopyWithImpl<$Res>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
     ));
   }
 }
@@ -130,7 +130,7 @@ class _$_PhotoModel implements _PhotoModel {
   @override
   final String previewURL;
   @override
-  final String id;
+  final int id;
 
   @override
   String toString() {
@@ -170,7 +170,7 @@ abstract class _PhotoModel implements PhotoModel {
   const factory _PhotoModel(
       {required final String tags,
       required final String previewURL,
-      required final String id}) = _$_PhotoModel;
+      required final int id}) = _$_PhotoModel;
 
   factory _PhotoModel.fromJson(Map<String, dynamic> json) =
       _$_PhotoModel.fromJson;
@@ -180,7 +180,7 @@ abstract class _PhotoModel implements PhotoModel {
   @override
   String get previewURL;
   @override
-  String get id;
+  int get id;
   @override
   @JsonKey(ignore: true)
   _$$_PhotoModelCopyWith<_$_PhotoModel> get copyWith =>
