@@ -2,7 +2,7 @@ import 'dart:collection';
 
 import 'package:flutter/material.dart';
 import 'package:image_search_prac_2/data/source/remote/api/pixabay_api.dart';
-import 'package:image_search_prac_2/domain/model/photo_model.dart';
+import 'package:image_search_prac_2/domain/model/photo/photo_model.dart';
 
 class MainViewModel with ChangeNotifier {
   final PixabayApi api;
