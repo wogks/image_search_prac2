@@ -17,8 +17,6 @@ class VideoSearchViewModel with ChangeNotifier {
   bool _isLoading = false;
   bool get isLoading => _isLoading;
 
-
-
   Future<void> fetchVideos(String query) async {
     final result = await videoApi.fetchVideos(query);
     _isLoading = true;
@@ -28,5 +26,4 @@ class VideoSearchViewModel with ChangeNotifier {
     _isLoading = false;
     notifyListeners();
   }
-
 }

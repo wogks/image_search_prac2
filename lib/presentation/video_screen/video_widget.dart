@@ -9,11 +9,12 @@ class VideoWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-      borderRadius: const BorderRadius.all(Radius.circular(16)),
-      image: DecorationImage(
-        fit: BoxFit.cover,
-        image: NetworkImage('https://i.vimeocdn.com/video/${thumbNail.pictureId}_960x540.jpg'),
-      )),
+          borderRadius: const BorderRadius.all(Radius.circular(16)),
+          image: DecorationImage(
+            fit: BoxFit.cover,
+            image: NetworkImage(
+                'https://i.vimeocdn.com/video/${thumbNail.pictureId}_960x540.jpg'),
+          )),
     );
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:image_search_prac_2/main.dart';
+import 'package:image_search_prac_2/presentation/video_screen/video_detail.dart';
 import 'package:image_search_prac_2/presentation/video_screen/video_widget.dart';
 import 'package:image_search_prac_2/presentation/video_screen/video_search_view_model.dart';
 import 'package:provider/provider.dart';
@@ -13,12 +14,22 @@ class VideoSearch extends StatefulWidget {
 
 class _VideoSearchState extends State<VideoSearch> {
   final _controller = TextEditingController();
+
+  @override
+  void initState() {
+    Future.delayed(Duration.zero, (() {
+      final viewModel = context.read<VideoSearchViewModel>();
+      viewModel.fetchVideos('');
+    }));
+
+    super.initState();
+  }
+
   @override
   void dispose() {
     _controller.dispose();
     super.dispose();
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +70,17 @@ class _VideoSearchState extends State<VideoSearch> {
                       mainAxisSpacing: 16),
                   itemBuilder: (context, index) {
                     final thumbNail = viewModel.videos[index];
-                    return VideoWidget(thumbNail: thumbNail);
+                    return GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  VideoDetailScreen(videoUrl: thumbNail),
+                            ),
+                          );
+                        },
+                        child: VideoWidget(thumbNail: thumbNail));
                   },
                 ),
               ),
