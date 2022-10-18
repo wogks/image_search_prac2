@@ -52,13 +52,13 @@ class _VideoSearchState extends State<VideoSearch> {
             : Expanded(
                 child: GridView.builder(
                   padding: const EdgeInsets.all(16),
-                  itemCount: viewModel.thumbNails.length,
+                  itemCount: viewModel.videos.length,
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                       crossAxisSpacing: 16,
                       mainAxisSpacing: 16),
                   itemBuilder: (context, index) {
-                    final thumbNail = viewModel.thumbNails[index];
+                    final thumbNail = viewModel.videos[index];
                     return VideoWidget(thumbNail: thumbNail);
                   },
                 ),

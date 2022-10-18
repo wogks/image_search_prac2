@@ -7,14 +7,13 @@ class VideoWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InteractiveViewer(
-        child: Container(
+    return Container(
       decoration: BoxDecoration(
-          borderRadius: const BorderRadius.all(Radius.circular(16)),
-          image: DecorationImage(
-            fit: BoxFit.cover,
-            image: NetworkImage(thumbNail.pictureId!),
-          )),
-    ));
+      borderRadius: const BorderRadius.all(Radius.circular(16)),
+      image: DecorationImage(
+        fit: BoxFit.cover,
+        image: NetworkImage('https://i.vimeocdn.com/video/${thumbNail.pictureId}_960x540.jpg'),
+      )),
+    );
   }
 }

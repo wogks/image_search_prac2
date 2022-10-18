@@ -15,13 +15,4 @@ class VideoApiImple extends VideoApi {
     return hits.map((e) => VideoModel.fromJson(e)).toList();
   }
 
-  @override
-  Future<List<VideoModel>> fetchThumbnail(String pictureId) async{
-    final response = await http.get(Uri.parse('https://i.vimeocdn.com/video/${pictureId}_960x540.jpg'));
-    Map<String, dynamic> json = jsonDecode(response.body);
-    Iterable thumbNail = json['hits'];
-    return thumbNail.map((e) => VideoModel.fromJson(e)).toList();
-  }
-
-
 }
